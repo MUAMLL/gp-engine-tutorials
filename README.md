@@ -35,7 +35,7 @@ These are designed as follow-on self-study and research task starter materials a
 
 
 ## Additional Links and Resources:
-* [Lab Github resources](https://github.com/MU-HPDI)
-  * [Lab Nautilus Materials](https://github.com/MU-HPDI/nautilus)
-* [Dr. Scott's Lab Webpage](https://scottgs.mufaculty.umsystem.edu/)
+* [Lab Github resources](https://github.com/MUAMLL)
+  * [Lab Nautilus Materials](https://github.com/MUAMLL/nautilus)
+* [Dr. Hurt's Lab Webpage](https://jhurt.mufaculty.umsystem.edu/)
 * [GP-ENGINE Webpage](https://gp-engine.umsystem.edu/)
