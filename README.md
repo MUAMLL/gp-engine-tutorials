@@ -20,9 +20,6 @@ building Kubernetes pod and job YAML files, and deploying pods and jobs to the c
 
 ## If you are participating in the tutorial, please ensure you have an active account for either Github.com or ORCID for sign in to the computing environment for hands on activities of the tutorial.
 
-## If you are participating in GP-ENGINE training, please complete this survey to assist our reporting of our project outreach efforts.
-Survey Link (3-minutes to complete): https://forms.gle/hmtJQpiM7UAVbZNW8 
-
 ---
 
 ## Notebooks 
