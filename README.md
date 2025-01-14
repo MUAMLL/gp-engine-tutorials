@@ -3,7 +3,7 @@
 #### Adapted from Big Data 2023 Tutorial: With Big Data Comes Big Compute
 
 #### Material Authors: J. Alex Hurt, Anes Ouadou, Grant Scott 
-#### from the MU High-Performance Data-Intensice Computing Systems Lab.
+#### from the University of Missouri Nautilus Team.
 
 ## From the Series: GP-ENGINE AI/ML Research Computing Tutorials
 
