@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ job_name }}
+spec:
+  template:
+    spec:
+      # Workaround for re-using the image
+      securityContext:
+        runAsUser: 0
+        
+      containers:
+      - name: fastq
+        image: gitlab-registry.nrp-nautilus.io/gp-engine/dc-genomics
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+          cd /data && \ 
+        
+          for input_file in *.fastq; do
+            echo $input_file
+            head -n4 $input_file
+            fastqc $input_file
+          done
+        resources:
+           limits:
+             memory: 12Gi
+             cpu: 4
+           requests:
+             memory: 12Gi
+             cpu: 4
+        volumeMounts:
+        - name: {{ pvc_name }}
+          mountPath: /data
+      volumes:
+      - name: {{ pvc_name }}
+        persistentVolumeClaim:
+          claimName: {{ pvc_name }}
+      restartPolicy: Never
+  backoffLimit: 1

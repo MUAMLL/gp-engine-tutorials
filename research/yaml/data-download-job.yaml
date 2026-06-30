@@ -1,0 +1,46 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ job_name }}
+spec:
+  template:
+    spec:
+      containers:
+      - name: download-data
+        image: alpine/curl
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+          
+          # 1. Navigate to your PVC mount directory
+          cd /data && \
+          
+          # 2. Download the files directly into the PVC
+          curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/004/SRR2589044/SRR2589044_1.fastq.gz && \
+          curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/004/SRR2589044/SRR2589044_2.fastq.gz && \
+          curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/003/SRR2584863/SRR2584863_1.fastq.gz && \
+          curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/003/SRR2584863/SRR2584863_2.fastq.gz && \
+          curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/006/SRR2584866/SRR2584866_1.fastq.gz && \
+          curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/006/SRR2584866/SRR2584866_2.fastq.gz && \
+
+          # 3. Unzip all of the data
+          gunzip -f *.gz && \
+
+          # 4. Done
+          echo "Data Downloaded"
+        resources:
+           limits:
+             memory: 2Gi
+             cpu: 4
+           requests:
+             memory: 2Gi
+             cpu: 4
+        volumeMounts:
+        - name: {{ pvc_name }}
+          mountPath: /data
+      volumes:
+      - name: {{ pvc_name }}
+        persistentVolumeClaim:
+          claimName: {{ pvc_name }}
+      restartPolicy: Never
+  backoffLimit: 4
